@@ -8,22 +8,19 @@
 void tokensorter(struct wordsList list[]){
 	int i = 0;
 	while(i < 8){
-                printf("%s\n", list[i].word);
-                i++;
-        }
-	int j = 0;
-	int x = 0;
-	while(j < 8){
-		while(x < 8){
-			if(list[j].word != NULL && list[x].word == list[j].word){
-				list[j].freq += list[x].freq;
-				list[x].word = NULL;
-				printf("%d\n", list[j].freq);
+		char* str = list[i].word;
+		int j = i + 1;
+		while(j < 8){
+			char* str2 = list[j].word;
+			if(list[i].word != NULL && strcmp(str, str2) == 0){
+				list[i].freq += list[j].freq;
+				list[j].word = NULL;
+				printf("%d\n", list[i].freq);
 			}
-			x++;
+			j++;
 		}
-		x = 0;
-		j++;
+		j = 0;
+		i++;
 	}
 	i = 0;
 	while( i < 8){
