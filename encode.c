@@ -1,11 +1,11 @@
-include <stdio.h>
+#include <stdio.h>
 #include <stdbool.h>
 #include <stdint.h>
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <fcntl.h>
 #include "asst2.h"
-//Token sorter breaks and seg faults with test file a.txt. Works with c.txt. b.txt is suppsoed to be blank for now. When running the program to test it you need to put an input and an output file. Input first output last. 
+//Token sorter breaks and seg faults with test file a.txt. Works with c.txt. b.txt is suppsoed to be blank for now. When running the program to test it you need to put an input and an output file. Input first output last.
 void tokensorter(struct wordsList list[]){
         int i = 0;
         while(i < wordcount){
