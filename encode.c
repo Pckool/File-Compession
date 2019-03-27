@@ -28,13 +28,33 @@ void tokensorter(struct wordsList list[]){
 		i++;
 	}
 	i = 0;
+	int j = 0;
+	int totalfreq = 0;
+	for ( i = 0; i < wordcount; i++)                     //Loop for ascending ordering
+	{
+		for ( j = 0; j < wordcount; j++)             //Loop for comparing other values
+		{
+			if (list[j].freq > list[i].freq)                //Comparing other array elements
+			{
+				int tmp = list[i].freq;         //Using temporary variable for storing last value
+				char* str3 = list[i].word;
+				list[i].freq = list[j].freq;            //replacing value
+				list[i].word = list[j].word;
+				list[j].word = str3;
+				list[j].freq = tmp;
+			}  
+		}
+	}
+	i = 0;
 	while( i < wordcount){
 		if(list[i].word != NULL){
+			totalfreq += list[i].freq;
 			printf("%s\n", list[i].word);
 			printf("%d\n", list[i].freq);
 		}
 		i++;
 	}
+	printf("%d\n", totalfreq);
 }
 
 void tokenmaker(const char *fpin){
