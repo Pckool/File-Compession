@@ -67,7 +67,7 @@ void tokenmaker(const char *fpin){
 	struct wordsList list[wordcount + 2];
 	while(status != 0){
 		status = read(in, &buffer, 1);
-		if(buffer == 32 || buffer == 9){
+		if(buffer == 32 || buffer == 9 || buffer == 10){
 			list[i].word = malloc(lettercount);
 			memcpy(list[i].word, temp, lettercount);
 			list[i].freq = 1;
@@ -88,11 +88,17 @@ void wordcounter(const char *fpin){
 	int *in = open (fpin, O_RDONLY);
 	int status = -1;
 	int buffer = '\0';
+	int lettercount = 0;
 	while(status != 0){
 		status = read( in, & buffer, 1);
-			if(buffer == 32 || buffer == 9){
+			if((buffer == 32 || buffer == 9 || buffer == 10) && lettercount > 0){
 				wordcount++;
+				lettercount = 0;
 			}
+			if((buffer != 32 || buffer != 9 || buffer != 10)){
+                        lettercount++;
+                }
+
 	}
 	close(in);
 	printf("%d\n", wordcount);
